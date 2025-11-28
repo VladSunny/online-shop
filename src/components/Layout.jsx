@@ -7,40 +7,45 @@ export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-base-100 flex flex-col">
-      <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
-      
-      <div className="flex h-screen flex-1">
-        {/* Боковое меню для десктопа - убрали container */}
-        <aside className="hidden lg:block w-64 bg-base-200 p-4 sticky top-0 h-screen overflow-y-auto">
-          <Sidebar />
-        </aside>
+    <div className="min-h-screen bg-base-100">
+      {/* Мобильное меню как drawer */}
+      <div className="drawer lg:drawer-open">
+        <input 
+          id="sidebar-drawer" 
+          type="checkbox" 
+          className="drawer-toggle" 
+          checked={sidebarOpen}
+          onChange={(e) => setSidebarOpen(e.target.checked)}
+        />
         
-        {/* Мобильное меню */}
-        <div className={`drawer lg:hidden ${sidebarOpen ? 'drawer-open' : ''}`}>
-          <input 
-            id="sidebar-drawer" 
-            type="checkbox" 
-            className="drawer-toggle" 
-            checked={sidebarOpen}
-            onChange={() => setSidebarOpen(!sidebarOpen)}
-          />
-          <div className="drawer-side z-50">
-            <label 
-              htmlFor="sidebar-drawer" 
-              className="drawer-overlay"
-              onClick={() => setSidebarOpen(false)}
-            ></label>
-            <div className="bg-base-200 w-80 h-full p-4 overflow-y-auto">
-              <Sidebar />
-            </div>
+        {/* Основной контент */}
+        <div className="drawer-content flex flex-col">
+          <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
+          
+          <div className="flex flex-1">
+            {/* Боковое меню для десктопа - ВНЕ drawer */}
+            <aside className="hidden lg:block w-64 bg-base-200 p-4 sticky top-0 h-screen overflow-y-auto">
+              <Sidebar onClose={() => setSidebarOpen(false)} />
+            </aside>
+            
+            {/* Основной контент */}
+            <main className="flex-1 p-4 lg:p-6 w-full">
+              <Outlet />
+            </main>
           </div>
         </div>
         
-        {/* Основной контент - убрали container */}
-        <main className="flex-1 p-4 lg:p-6 w-full">
-          <Outlet />
-        </main>
+        {/* Мобильное боковое меню (только для мобильных) */}
+        <div className="drawer-side z-50 lg:hidden">
+          <label 
+            htmlFor="sidebar-drawer" 
+            aria-label="close sidebar" 
+            className="drawer-overlay"
+          ></label>
+          <div className="bg-base-200 min-h-full w-80 p-4 overflow-y-auto">
+            <Sidebar onClose={() => setSidebarOpen(false)} />
+          </div>
+        </div>
       </div>
     </div>
   )
