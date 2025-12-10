@@ -23,8 +23,9 @@ export default function Header({ onMenuToggle }) {
       <nav className="hidden lg:flex flex-none">
         <ul className="menu menu-horizontal px-1">
           <li><Link to="/">Главная</Link></li>
-          <li><Link to="/products">Товары</Link></li>
-          <li><Link to="/about">О нас</Link></li>
+          <li><Link to="/LK">Личный кабинет</Link></li>
+          {/* <li><Link to="/products">Товары</Link></li>
+          <li><Link to="/about">О нас</Link></li> */}
           <li>
             <Link to="/cart" className="flex gap-2">
               🛒 Корзина

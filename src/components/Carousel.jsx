@@ -4,17 +4,21 @@ import { homeConfig } from '../config/home';
 export default function Carousel({ 
   images = homeConfig.carousel.images,
   imagesWithAlt = homeConfig.carousel.imagesWithAlt,
-  autoScrollInterval = 3000
+  autoScrollInterval = 3000 // Интервал автопрокрутки в миллисекундах
 } = {}) {
   
+  // Используем imagesWithAlt если передан, иначе создаём из images
   const carouselImages = imagesWithAlt || images.map((src, index) => ({
     src,
     alt: `Фрукты слайд ${index + 1}`
   }));
 
   const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const autoScrollRef = useRef(null);
   const currentIndexRef = useRef(0);
+  const carouselRef = useRef(null);
+  const observerRef = useRef(null);
 
   const scrollToSlide = (index) => {
     const slideId = `slide-${index}`;
@@ -38,41 +42,71 @@ export default function Carousel({
     scrollToSlide(nextIndex);
   };
 
+  // Функция для автопрокрутки
   const autoScroll = () => {
-    if (!isHovered) {
+    if (!isHovered && isVisible) {
       const nextIndex = (currentIndexRef.current + 1) % carouselImages.length;
       scrollToSlide(nextIndex);
     }
   };
 
+  // Инициализация Intersection Observer для отслеживания видимости
   useEffect(() => {
-    if (autoScrollInterval > 0) {
-      autoScrollRef.current = setInterval(autoScroll, autoScrollInterval);
-      
-      return () => {
-        if (autoScrollRef.current) {
-          clearInterval(autoScrollRef.current);
-        }
-      };
-    }
-  }, [autoScrollInterval, isHovered]);
+    if (!carouselRef.current) return;
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
+    const options = {
+      root: null, // относительно viewport
+      rootMargin: '0px',
+      threshold: 0.1 // срабатывает, когда 10% элемента видно
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach(entry => {
+        setIsVisible(entry.isIntersecting);
+      });
+    };
+
+    observerRef.current = new IntersectionObserver(handleIntersection, options);
+    observerRef.current.observe(carouselRef.current);
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Запуск и остановка автопрокрутки
+  useEffect(() => {
+    // Очищаем существующий интервал
     if (autoScrollRef.current) {
       clearInterval(autoScrollRef.current);
     }
+
+    // Запускаем новый интервал только если элемент виден
+    if (isVisible && autoScrollInterval > 0) {
+      autoScrollRef.current = setInterval(autoScroll, autoScrollInterval);
+    }
+
+    return () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+    };
+  }, [autoScrollInterval, isHovered, isVisible]);
+
+  // Обработчики событий мыши
+  const handleMouseEnter = () => {
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (autoScrollInterval > 0) {
-      autoScrollRef.current = setInterval(autoScroll, autoScrollInterval);
-    }
   };
 
   return (
     <div 
+      ref={carouselRef}
       className="carousel carousel-vertical rounded-box h-96"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
