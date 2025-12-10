@@ -1,40 +1,82 @@
+import { useState, useEffect, useRef } from 'react';
 import { homeConfig } from '../config/home';
 
 export default function Carousel({ 
   images = homeConfig.carousel.images,
-  imagesWithAlt = homeConfig.carousel.imagesWithAlt 
+  imagesWithAlt = homeConfig.carousel.imagesWithAlt,
+  autoScrollInterval = 3000
 } = {}) {
   
-  // Используем imagesWithAlt если передан, иначе создаём из images
   const carouselImages = imagesWithAlt || images.map((src, index) => ({
     src,
     alt: `Фрукты слайд ${index + 1}`
   }));
 
-  const handlePrevClick = (e, index) => {
-    e.preventDefault();
-    const prevIndex = index === 0 ? carouselImages.length - 1 : index - 1;
-    const slideId = `slide-${prevIndex}`;
+  const [isHovered, setIsHovered] = useState(false);
+  const autoScrollRef = useRef(null);
+  const currentIndexRef = useRef(0);
+
+  const scrollToSlide = (index) => {
+    const slideId = `slide-${index}`;
     document.getElementById(slideId)?.scrollIntoView({
       behavior: 'smooth',
       inline: 'center',
       block: 'nearest'
     });
+    currentIndexRef.current = index;
+  };
+
+  const handlePrevClick = (e, index) => {
+    e.preventDefault();
+    const prevIndex = index === 0 ? carouselImages.length - 1 : index - 1;
+    scrollToSlide(prevIndex);
   };
 
   const handleNextClick = (e, index) => {
     e.preventDefault();
     const nextIndex = index === carouselImages.length - 1 ? 0 : index + 1;
-    const slideId = `slide-${nextIndex}`;
-    document.getElementById(slideId)?.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-      block: 'nearest'
-    });
+    scrollToSlide(nextIndex);
+  };
+
+  const autoScroll = () => {
+    if (!isHovered) {
+      const nextIndex = (currentIndexRef.current + 1) % carouselImages.length;
+      scrollToSlide(nextIndex);
+    }
+  };
+
+  useEffect(() => {
+    if (autoScrollInterval > 0) {
+      autoScrollRef.current = setInterval(autoScroll, autoScrollInterval);
+      
+      return () => {
+        if (autoScrollRef.current) {
+          clearInterval(autoScrollRef.current);
+        }
+      };
+    }
+  }, [autoScrollInterval, isHovered]);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (autoScrollInterval > 0) {
+      autoScrollRef.current = setInterval(autoScroll, autoScrollInterval);
+    }
   };
 
   return (
-    <div className="carousel carousel-vertical rounded-box h-96">
+    <div 
+      className="carousel carousel-vertical rounded-box h-96"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {carouselImages.map((image, index) => {
         const slideId = `slide-${index}`;
         return (
