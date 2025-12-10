@@ -1,16 +1,101 @@
-# React + Vite
+# Домашнее задание по промышленному программированию
+Магазин сочных ягод и фруктов
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+*Github:* https://github.com/VladSunny/online-shop
 
-Currently, two official plugins are available:
+*Hosted:* -
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Техническая часть
 
-## React Compiler
+### Стек технологий
+- Vite React. 
+> React - это популярная JavaScript-библиотека с открытым исходным кодом для создания интерактивных и быстрых пользовательских интерфейсов (UI) веб и мобильных приложений, которая позволяет разбивать интерфейс на переиспользуемые компоненты, делая разработку более модульной, эффективной и масштабируемой, и используется в таких гигантах, как Facebook, Netflix, Instagram. 
+- Tailwind
+> Tailwind - это utility-first CSS-фреймворк с открытым исходным кодом, который позволяет быстро создавать пользовательские дизайны, применяя готовые классы (утилиты) напрямую в HTML. Вместо предоставления готовых компонентов (как Bootstrap), Tailwind предлагает набор низкоуровневых классов для отдельных свойств, таких как отступы, цвета и шрифты, что обеспечивает большую гибкость и консистентность в проекте. Он оптимизирует рабочий процесс, позволяя разработчикам не переключаться между файлами HTML и CSS
+- Daisy
+> DaisyUI - это библиотека компонентов с открытым исходным кодом для Tailwind CSS, которая добавляет готовые, легко настраиваемые CSS-классы для кнопок, форм, навигации и других элементов, делая разработку интерфейсов быстрее и проще, чем при использовании только чистых утилитарных классов Tailwind
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Структура проекта
+```
+my-vite-react-app/          # Корневая папка проекта
+├── public/                 # Статические файлы (не обрабатываются сборкой)
+│   ├── vite.svg           # Иконка Vite (пример)
+│   └── favicon.ico        # Иконка сайта во вкладке браузера
+│
+├── src/                   # Исходный код приложения (основная рабочая папка)
+│   ├── components/        # Переиспользуемые компоненты (кнопки, карточки, формы)
+│   │   ├── Layout.jsx    # Компонент макета (навигация, подвал)
+│   │   └── ...           # Другие компоненты
+│   │
+│   ├── pages/            # Страницы
+│   │   ├── Home.jsx      # Главная страница
+│   │   └── ...           # Другие страницы
+│   │
+│   ├── App.jsx           # Главный компонент приложения (определяет маршруты)
+│   ├── main.jsx          # Точка входа (подключает React к DOM)
+│   └── index.css         # Глобальные стили
+│
+├── node_modules/         # Автоматически генерируется, содержит все библиотеки
+│
+├── package.json          # Конфигурация проекта: зависимости, скрипты, метаданные
+├── yarn.lock             # Фиксирует точные версии зависимостей (для Yarn)
+├── vite.config.js        # Конфигурация Vite (сборщик и сервер разработки)
+├── .gitignore           # Указывает, какие файлы игнорировать Git
+└── README.md            # Описание проекта
+```
 
-## Expanding the ESLint configuration
+## Установка и запуск проекта
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 0. Склонировать репозиторий
+```
+git clone https://github.com/VladSunny/online-shop
+```
+
+### 1. Установка инструментов
+
+Лучше просто загуглите: как установить node, npm, yarn на [ваша ОС]
+
+Вам нужно:
+1. Установить Node js
+2. Установить npm
+3. Установить yarn
+
+Проверка установки:
+```
+node --version
+npm --version
+```
+
+Для Windows/Mac:
+1. Скачайте установщик с [официального сайта Node.js](https://nodejs.org/)
+2. Запустите установщик и следуйте инструкциям
+
+Для Linux (Ubuntu/Debian):
+```
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+---
+
+Установка yarn:
+
+```
+npm install --global yarn
+```
+
+### 2. Установка зависимостей
+
+В директории проекта просто напишите:
+```
+yarn
+```
+
+### 3. Запуск проекта
+
+В директории проекта просто напишите:
+```
+yarn dev
+```
+
+В консоли выведится ссылка на локалхост с вебприложением.
