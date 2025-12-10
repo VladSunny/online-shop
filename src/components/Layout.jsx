@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import Footer from './Footer' // Добавьте этот импорт
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-base-100">
+    <div className="min-h-screen bg-base-100 flex flex-col">
       {/* Мобильное меню как drawer */}
-      <div className="drawer lg:drawer-open">
+      <div className="drawer lg:drawer-open flex-1">
         <input 
           id="sidebar-drawer" 
           type="checkbox" 
@@ -19,12 +20,12 @@ export default function Layout() {
         />
         
         {/* Основной контент */}
-        <div className="drawer-content flex flex-col">
+        <div className="drawer-content flex flex-col flex-1">
           <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
           
           <div className="flex flex-1">
             {/* Боковое меню для десктопа - ВНЕ drawer */}
-            <aside className="hidden lg:block w-64 bg-base-200 p-4 sticky top-0 h-screen overflow-y-auto">
+            <aside className="hidden lg:block w-64 bg-base-200 p-4 sticky top-0 h-[calc(100vh-64px)] overflow-y-auto">
               <Sidebar onClose={() => setSidebarOpen(false)} />
             </aside>
             
@@ -47,6 +48,9 @@ export default function Layout() {
           </div>
         </div>
       </div>
+      
+      {/* Добавьте Footer здесь */}
+      <Footer />
     </div>
   )
 }

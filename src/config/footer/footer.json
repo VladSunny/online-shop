@@ -1,0 +1,139 @@
+{
+  "company": {
+    "name": "BerryShop",
+    "tagline": "Фрукты и полезные продукты",
+    "description": "Мы поставляем самые свежие и качественные фрукты напрямую от проверенных фермеров. Наша миссия — делать здоровое питание доступным для каждого.",
+    "logo": "🍓",
+    "email": "info@berryshop.ru",
+    "phone": "8 (800) 123-45-67",
+    "address": "г. Москва, ул. Фруктовая, д. 1",
+    "workingHours": "Пн-Пт: 9:00-20:00, Сб-Вс: 10:00-18:00",
+    "version": "1.0.0"
+  },
+  
+  "social": {
+    "title": "Мы в соцсетях",
+    "networks": [
+      {
+        "name": "Telegram",
+        "icon": "📱",
+        "url": "https://t.me/berryshop",
+        "color": "bg-blue-400 hover:bg-blue-500",
+        "tooltip": "Наш Telegram канал"
+      },
+      {
+        "name": "VKontakte",
+        "icon": "👥",
+        "url": "https://vk.com/berryshop",
+        "color": "bg-blue-600 hover:bg-blue-700",
+        "tooltip": "Группа ВКонтакте"
+      },
+      {
+        "name": "YouTube",
+        "icon": "📺",
+        "url": "https://youtube.com/@berryshop",
+        "color": "bg-red-600 hover:bg-red-700",
+        "tooltip": "Наш YouTube канал"
+      },
+      {
+        "name": "Instagram",
+        "icon": "📷",
+        "url": "https://instagram.com/berryshop",
+        "color": "bg-pink-500 hover:bg-pink-600",
+        "tooltip": "Instagram аккаунт"
+      },
+      {
+        "name": "WhatsApp",
+        "icon": "💬",
+        "url": "https://wa.me/78001234567",
+        "color": "bg-green-500 hover:bg-green-600",
+        "tooltip": "Написать в WhatsApp"
+      }
+    ]
+  },
+  
+  "links": {
+    "useful": {
+      "title": "Полезные ссылки",
+      "items": [
+        { "name": "О магазине", "url": "/about", "icon": "🏪" },
+        { "name": "Доставка и оплата", "url": "/delivery", "icon": "🚚" },
+        { "name": "Гарантии и возврат", "url": "/guarantee", "icon": "✅" },
+        { "name": "Контакты", "url": "/contacts", "icon": "📞" },
+        { "name": "Частые вопросы", "url": "/faq", "icon": "❓" },
+        { "name": "Блог о фруктах", "url": "/blog", "icon": "📝" }
+      ]
+    },
+    "legal": {
+      "title": "Правовая информация",
+      "items": [
+        { "name": "Политика конфиденциальности", "url": "/privacy", "icon": "🔒" },
+        { "name": "Пользовательское соглашение", "url": "/terms", "icon": "📄" },
+        { "name": "Политика возврата", "url": "/refund", "icon": "↩️" },
+        { "name": "Карта сайта", "url": "/sitemap", "icon": "🗺️" },
+        { "name": "Реквизиты компании", "url": "/requisites", "icon": "🏢" }
+      ]
+    }
+  },
+  
+  "partners": {
+    "title": "Наши партнеры",
+    "sponsors": [
+      {
+        "name": "FreshFarm",
+        "description": "Поставщик свежих фруктов",
+        "logo": "🍎",
+        "url": "https://freshfarm.ru",
+        "category": "Поставщик"
+      },
+      {
+        "name": "EcoPack",
+        "description": "Экологичная упаковка",
+        "logo": "🌱",
+        "url": "https://ecopack.ru",
+        "category": "Упаковка"
+      },
+      {
+        "name": "QuickDeliver",
+        "description": "Служба доставки",
+        "logo": "🚚",
+        "url": "https://quickdeliver.ru",
+        "category": "Доставка"
+      },
+      {
+        "name": "OrganicCert",
+        "description": "Сертификация органики",
+        "logo": "📜",
+        "url": "https://organiccert.ru",
+        "category": "Сертификация"
+      }
+    ]
+  },
+  
+  "newsletter": {
+    "title": "Подписка на новости",
+    "description": "Получайте свежие статьи, рецепты и специальные предложения",
+    "placeholder": "Ваш email",
+    "buttonText": "Подписаться",
+    "buttonIcon": "📨"
+  },
+  
+  "payment": {
+    "title": "Способы оплаты",
+    "methods": [
+      { "name": "Visa", "logo": "visa", "color": "bg-blue-600" },
+      { "name": "MasterCard", "logo": "mastercard", "color": "bg-red-600" },
+      { "name": "Мир", "logo": "мир", "color": "bg-green-600" },
+      { "name": "МТС", "logo": "мтс", "color": "bg-red-500" },
+      { "name": "Тинькофф", "logo": "tinkoff", "color": "bg-yellow-600" },
+      { "name": "Сбербанк", "logo": "сбер", "color": "bg-green-500" }
+    ]
+  },
+  
+  "legal": {
+    "copyright": "Все права защищены",
+    "disclaimer": "Этот сайт является демонстрационным. Все данные, включая товары и цены, являются тестовыми.",
+    "developedBy": "Разработано командой BerryShop",
+    "designBy": "Дизайн от FruitDesign Studio"
+  }
+}
