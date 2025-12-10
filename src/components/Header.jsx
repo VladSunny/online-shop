@@ -16,7 +16,7 @@ export default function Header({ onMenuToggle }) {
       
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost normal-case text-xl">
-          🛍️ MyShop
+          🍓 BerryShop
         </Link>
       </div>
       

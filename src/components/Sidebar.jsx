@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom'
 export default function Sidebar({ onClose }) {
   const menuItems = [
     { path: '/', label: 'Главная', icon: '🏠' },
-    { path: '/products', label: 'Все товары', icon: '📦' },
-    { path: '/categories/electronics', label: 'Электроника', icon: '📱' },
-    { path: '/categories/clothing', label: 'Одежда', icon: '👕' },
-    { path: '/categories/books', label: 'Книги', icon: '📚' },
-    { path: '/promotions', label: 'Акции', icon: '🔥' },
-    { path: '/favorites', label: 'Избранное', icon: '❤️' },
+    // { path: '/products', label: 'Все товары', icon: '📦' },
+    // { path: '/categories/electronics', label: 'Электроника', icon: '📱' },
+    // { path: '/categories/clothing', label: 'Одежда', icon: '👕' },
+    // { path: '/categories/books', label: 'Книги', icon: '📚' },
+    // { path: '/promotions', label: 'Акции', icon: '🔥' },
+    // { path: '/favorites', label: 'Избранное', icon: '❤️' },
   ]
 
   return (
@@ -25,7 +25,7 @@ export default function Sidebar({ onClose }) {
       </div>
 
       <h2 className="text-lg font-bold px-4 py-2 hidden lg:block">Категории</h2>
-      <ul className="menu bg-base-200 rounded-box">
+      <ul className="menu bg-base-300 rounded-box">
         {menuItems.map((item) => (
           <li key={item.path}>
             <NavLink
