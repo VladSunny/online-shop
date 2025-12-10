@@ -1,17 +1,19 @@
-export default function Carousel() {
-  const images = [
-    // { src: "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp" },
-    { src: "https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp" },
-    { src: "https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp" },
-    { src: "https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp" },
-    // { src: "https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp" },
-    { src: "https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp" },
-    { src: "https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp" },
-  ];
+import { homeConfig } from '../config/home';
+
+export default function Carousel({ 
+  images = homeConfig.carousel.images,
+  imagesWithAlt = homeConfig.carousel.imagesWithAlt 
+} = {}) {
+  
+  // Используем imagesWithAlt если передан, иначе создаём из images
+  const carouselImages = imagesWithAlt || images.map((src, index) => ({
+    src,
+    alt: `Фрукты слайд ${index + 1}`
+  }));
 
   const handlePrevClick = (e, index) => {
     e.preventDefault();
-    const prevIndex = index === 0 ? images.length - 1 : index - 1;
+    const prevIndex = index === 0 ? carouselImages.length - 1 : index - 1;
     const slideId = `slide-${prevIndex}`;
     document.getElementById(slideId)?.scrollIntoView({
       behavior: 'smooth',
@@ -22,7 +24,7 @@ export default function Carousel() {
 
   const handleNextClick = (e, index) => {
     e.preventDefault();
-    const nextIndex = index === images.length - 1 ? 0 : index + 1;
+    const nextIndex = index === carouselImages.length - 1 ? 0 : index + 1;
     const slideId = `slide-${nextIndex}`;
     document.getElementById(slideId)?.scrollIntoView({
       behavior: 'smooth',
@@ -33,7 +35,7 @@ export default function Carousel() {
 
   return (
     <div className="carousel carousel-vertical rounded-box h-96">
-      {images.map((image, index) => {
+      {carouselImages.map((image, index) => {
         const slideId = `slide-${index}`;
         return (
           <div 
@@ -41,7 +43,11 @@ export default function Carousel() {
             id={slideId}
             className="carousel-item h-full relative"
           >
-            <img src={image.src} alt={`Slide ${index + 1}`} className="w-full h-full object-cover" />
+            <img 
+              src={typeof image === 'string' ? image : image.src} 
+              alt={typeof image === 'string' ? `Слайд ${index + 1}` : image.alt} 
+              className="w-full h-full object-cover" 
+            />
             
             <div className="absolute w-full left-1/2 bottom-4 transform -translate-x-1/2 flex flex-row justify-around">
               <button 
