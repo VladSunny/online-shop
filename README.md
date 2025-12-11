@@ -4,7 +4,7 @@
 
 _Github:_ https://github.com/VladSunny/online-shop
 
-_Hosted:_ -
+_Hosted:_ https://school-online-shop.netlify.app/
 
 ## Техническая часть
 
