@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark, synthwave;
+  themes:
+    light --default,
+    dark --prefersdark,
+    synthwave;
 }
 
 /* Убираем скролл при открытом мобильном меню */

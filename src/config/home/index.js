@@ -1,6 +1,6 @@
-import articles from './articles.json';
-import carousel from './carousel.json';
-import content from './content.json';
+import articles from "./articles.json";
+import carousel from "./carousel.json";
+import content from "./content.json";
 
 // Простой объект конфигурации
 export const homeConfig = {
@@ -9,19 +9,19 @@ export const homeConfig = {
   articlesSection: {
     title: articles.sectionTitle,
     subtitle: articles.sectionSubtitle,
-    allArticlesButton: articles.allArticlesButton
+    allArticlesButton: articles.allArticlesButton,
   },
-  
+
   // Карусель
   carousel: {
     images: carousel.images,
     // Можно добавить alt текст для каждой картинки
     imagesWithAlt: carousel.images.map((src, index) => ({
       src,
-      alt: `Фрукты ${index + 1}`
-    }))
+      alt: `Фрукты ${index + 1}`,
+    })),
   },
-  
+
   // Контент
   content: {
     heroTitle: content.hero.title,
@@ -31,13 +31,13 @@ export const homeConfig = {
       description: content.welcomeCard.description,
       whyChooseUs: {
         title: content.welcomeCard.whyChooseUs.title,
-        points: content.welcomeCard.whyChooseUs.points
+        points: content.welcomeCard.whyChooseUs.points,
       },
       quote: content.welcomeCard.quote,
-      buttons: content.welcomeCard.buttons
+      buttons: content.welcomeCard.buttons,
     },
-    newsletter: content.newsletter
-  }
+    newsletter: content.newsletter,
+  },
 };
 
 // Экспорт по умолчанию

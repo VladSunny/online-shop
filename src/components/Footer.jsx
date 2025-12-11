@@ -1,19 +1,9 @@
-import { Link } from 'react-router-dom';
-import footerConfig, { 
-  utils, 
-  styles 
-} from '../config/footer';
+import { Link } from "react-router-dom";
+import footerConfig, { utils, styles } from "../config/footer";
 
 export default function Footer() {
-  const {
-    company,
-    social,
-    links,
-    partners,
-    newsletter,
-    payment,
-    legal
-  } = footerConfig;
+  const { company, social, links, partners, newsletter, payment, legal } =
+    footerConfig;
 
   const currentYear = utils.getCurrentYear();
 
@@ -29,15 +19,27 @@ export default function Footer() {
                 <p className="text-sm opacity-75">{company.tagline}</p>
               </div>
             </div>
-            <p className="text-sm">
-              {company.description}
-            </p>
-            
+            <p className="text-sm">{company.description}</p>
+
             <div className="space-y-2 text-sm">
-              <p>📧 <a href={`mailto:${company.email}`} className="link link-hover">{company.email}</a></p>
-              <p>📞 <a href={`tel:${company.phone}`} className="link link-hover">{utils.formatPhone(company.phone)}</a></p>
-              <p>📍 <span className="opacity-75">{company.address}</span></p>
-              <p>⏰ <span className="opacity-75">{company.workingHours}</span></p>
+              <p>
+                📧{" "}
+                <a href={`mailto:${company.email}`} className="link link-hover">
+                  {company.email}
+                </a>
+              </p>
+              <p>
+                📞{" "}
+                <a href={`tel:${company.phone}`} className="link link-hover">
+                  {utils.formatPhone(company.phone)}
+                </a>
+              </p>
+              <p>
+                📍 <span className="opacity-75">{company.address}</span>
+              </p>
+              <p>
+                ⏰ <span className="opacity-75">{company.workingHours}</span>
+              </p>
             </div>
           </div>
 
@@ -46,7 +48,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {links.useful.items.map((item, index) => (
                 <li key={index}>
-                  <Link 
+                  <Link
                     to={item.url}
                     className="link link-hover opacity-75 hover:opacity-100 flex items-center gap-2"
                   >
@@ -56,12 +58,14 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            
-            <h4 className={`${styles.sectionTitle} mt-6`}>{links.legal.title}</h4>
+
+            <h4 className={`${styles.sectionTitle} mt-6`}>
+              {links.legal.title}
+            </h4>
             <ul className="space-y-2">
               {links.legal.items.map((item, index) => (
                 <li key={index}>
-                  <Link 
+                  <Link
                     to={item.url}
                     className="link link-hover opacity-75 hover:opacity-100 text-sm flex items-center gap-2"
                   >
@@ -88,20 +92,22 @@ export default function Footer() {
                   <div>
                     <h5 className="font-semibold">{partner.name}</h5>
                     <p className="text-xs opacity-75">{partner.description}</p>
-                    <span className="badge badge-outline badge-xs mt-1">{partner.category}</span>
+                    <span className="badge badge-outline badge-xs mt-1">
+                      {partner.category}
+                    </span>
                   </div>
                 </a>
               ))}
             </div>
-            
+
             <div className="mt-6 space-y-2">
               <h4 className="font-semibold">{newsletter.title}</h4>
               <p className="text-sm opacity-75">{newsletter.description}</p>
               <div className="join">
-                <input 
-                  type="email" 
-                  placeholder={newsletter.placeholder} 
-                  className="input input-bordered join-item flex-1" 
+                <input
+                  type="email"
+                  placeholder={newsletter.placeholder}
+                  className="input input-bordered join-item flex-1"
                 />
                 <button className="btn btn-primary join-item">
                   {newsletter.buttonIcon} {newsletter.buttonText}
@@ -126,7 +132,7 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            
+
             <h4 className={styles.sectionTitle}>{payment.title}</h4>
             <div className="flex flex-wrap gap-2 mb-4">
               {payment.methods.map((method, index) => (
@@ -148,7 +154,9 @@ export default function Footer() {
               © {currentYear} {company.name}. {legal.copyright}
             </p>
             <div className="text-xs opacity-75 mt-1 space-y-1">
-              <p>{legal.developedBy} • Версия {company.version}</p>
+              <p>
+                {legal.developedBy} • Версия {company.version}
+              </p>
               <p>{legal.designBy}</p>
             </div>
           </div>
@@ -156,9 +164,9 @@ export default function Footer() {
           <div className="flex flex-wrap gap-4 justify-center">
             {[
               ...links.useful.items.slice(0, 3),
-              ...links.legal.items.slice(0, 2)
+              ...links.legal.items.slice(0, 2),
             ].map((item, index) => (
-              <Link 
+              <Link
                 key={index}
                 to={item.url}
                 className="text-xs link link-hover opacity-75 hover:opacity-100"
@@ -170,9 +178,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center mt-6">
-          <p className="text-xs opacity-50">
-            {legal.disclaimer}
-          </p>
+          <p className="text-xs opacity-50">{legal.disclaimer}</p>
         </div>
       </div>
     </footer>
