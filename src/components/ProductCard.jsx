@@ -28,9 +28,9 @@ export default function ProductCard({ product }) {
                 </span>
               )}
             </div>
-            {!product.inStock && (
+            {/* {!product.inStock && (
               <span className="badge badge-error">Нет в наличии</span>
-            )}
+            )} */}
           </div>
 
           <div className="card-actions mt-4">
